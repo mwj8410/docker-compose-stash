@@ -1,0 +1,17 @@
+version: '3.7'
+x-postgres:
+  &postgres
+  POSTGRES_DB: example_database
+  POSTGRES_USER: username
+  POSTGRES_PASSWORD: password
+  POSTGRES_SCHEMA: example_schema
+
+services:
+  postgres:
+    image: postgres:11.1-alpine
+    restart: always
+    environment:
+      <<: *postgres
+    ports:
+      - 5432:5432
+    command: postgres -c 'max_connections=250'

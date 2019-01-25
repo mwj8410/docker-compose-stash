@@ -1,0 +1,16 @@
+version: '3.7'
+x-mysql:
+  &mysql
+  MYSQL_DATABASE: example_database
+  MYSQL_ROOT_PASSWORD: rootpassword
+  MYSQL_USER: username
+  MYSQL_PASSWORD: password
+
+services:
+  mysql:
+    image: mysql:5.7
+    restart: always
+    environment:
+      <<: *mysql
+    ports:
+      - 3306:3306
